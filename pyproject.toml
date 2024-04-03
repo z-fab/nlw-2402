@@ -4,11 +4,15 @@ version = "0.1.0"
 description = ""
 authors = ["Fabricio Zillig <fabricio.zillig@gmail.com>"]
 readme = "README.md"
-packages = [{include = "pass"}]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.12"
+sqlalchemy = "^2.0.29"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
 
 [build-system]
 requires = ["poetry-core"]
