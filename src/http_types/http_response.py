@@ -1,4 +1,4 @@
-from types import Dict
+from typing import Dict
 
 class HttpResponse:
     def __init__(self, status_code: int, body: Dict):
