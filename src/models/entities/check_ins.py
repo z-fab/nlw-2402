@@ -8,7 +8,6 @@ class Check_ins(Base):
     id = Column(Integer, primary_key=True)
     created_at = Column(DateTime, default=func.now())
     attendeeId = Column(String, ForeignKey('attendees.id'))
-    
 
     def __repr__(self):
-        return f'<Ateendees [name={self.name}, email={self.email}, event_id={self.event_id}]>'
+        return f'<CheckIn [id={self.id}, attendeeId={self.attendeeId}, created_at={self.created_at}]>'
