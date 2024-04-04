@@ -4,6 +4,7 @@ from src.models.entities.attendees import Attendees
 from src.models.entities.check_ins import Check_ins
 from src.models.entities.events import Events
 from sqlalchemy.exc import IntegrityError, NoResultFound
+from src.errors.http_conflict import HttpConflictError
 
 class AttendeesRepository:
 
@@ -23,7 +24,7 @@ class AttendeesRepository:
                 return attendeeInfo
                 
             except IntegrityError:
-                raise Exception("Attendee already inserted")
+                raise HttpConflictError("Attendee already inserted")
             except Exception as exception:
                 database.session.rollback()
                 raise exception

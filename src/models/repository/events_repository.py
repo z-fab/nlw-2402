@@ -3,6 +3,7 @@ from src.models.settings.connection import db_connection_handler
 from src.models.entities.events import Events
 from src.models.entities.attendees import Attendees
 from sqlalchemy.exc import IntegrityError, NoResultFound
+from src.errors.http_conflict import HttpConflictError
 
 class EventsRepository:
     
@@ -22,7 +23,7 @@ class EventsRepository:
 
                 return eventsInfo
             except IntegrityError:
-                raise Exception("Event already exists")
+                raise HttpConflictError("Event already exists")
             except Exception as exception:
                 database.session.rollback()
                 raise exception

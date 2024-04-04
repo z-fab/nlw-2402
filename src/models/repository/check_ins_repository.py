@@ -1,6 +1,7 @@
 from src.models.settings.connection import db_connection_handler
 from src.models.entities.check_ins import Check_ins
 from sqlalchemy.exc import IntegrityError
+from src.errors.http_conflict import HttpConflictError
 
 class CheckinRepository:
 
@@ -17,7 +18,7 @@ class CheckinRepository:
                 return check_in
                 
             except IntegrityError:
-                raise Exception("Check in already inserted")
+                raise HttpConflictError("Check in already inserted")
             except Exception as exception:
                 database.session.rollback()
                 raise exception
