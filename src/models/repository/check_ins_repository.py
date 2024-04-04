@@ -4,17 +4,17 @@ from sqlalchemy.exc import IntegrityError
 
 class CheckinRepository:
 
-    def insert_check_in(self, attendee_id: String):
+    def insert_check_in(self, attendee_id: str):
         with db_connection_handler as database:
             try:
                 check_in = Check_ins(
-                    attendee_id = attendee_id
+                    attendeeId = attendee_id
                 )
 
-                database.session.add(attendee)
+                database.session.add(check_in)
                 database.session.commit()
 
-                return attendeeInfo
+                return check_in
                 
             except IntegrityError:
                 raise Exception("Check in already inserted")
